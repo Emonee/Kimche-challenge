@@ -1,0 +1,9 @@
+h1 {
+  color: var(--main-font-color);
+  font-weight: bold;
+}
+
+.secondary-text {
+  color: var(--secondary-font-color);
+  font-weight: 500;
+}
