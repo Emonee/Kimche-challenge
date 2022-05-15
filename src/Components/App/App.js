@@ -3,6 +3,7 @@ import { useQuery, gql } from "@apollo/client";
 import './App.css';
 
 import Header from "../Header/Header";
+import SearchInput from "../SearchInput/SearchInput";
 
 const COUNTRIES_DATA_QUERY = gql`
   {
@@ -27,6 +28,7 @@ function App() {
   return (
     <>
       <Header />
+      <SearchInput />
       <h1 className="text-primary">My first gql query</h1>
       <ul>
         {data.countries.map(country => (

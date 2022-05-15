@@ -1,0 +1,20 @@
+.searchIcon {
+  position: relative;
+  left: 8px;
+  top: -29px;
+  z-index: 1;
+
+  font-size: 1rem;
+  
+  color: var(--secondary-font-color);
+}
+
+.input {  
+  padding-left: 35px;
+
+  border: 2px solid var(--secondary-font-color);
+  border-radius: 20px;
+  width: 100%;
+
+  color: var(--main-font-color);
+}
