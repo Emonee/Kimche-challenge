@@ -1,0 +1,21 @@
+.labelButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-weight: 500;
+  height: 40px;
+  border: 2px solid var(--secondary-font-color);
+  border-radius: 8px;
+  box-shadow: inset 0px -4px rgba(0, 0, 0, 20%);
+  text-transform: capitalize;
+
+  color: var(--main-font-color);
+  background-color: var(--secondary-background-color);
+
+  cursor: pointer;
+}
+
+.labelButton:hover {
+  background-color: var(--hover-color);
+}
