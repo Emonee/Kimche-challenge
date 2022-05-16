@@ -16,5 +16,6 @@
   border-radius: 20px;
   width: 100%;
 
+  background-color: var(--secondary-background-color);
   color: var(--main-font-color);
 }

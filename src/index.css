@@ -5,11 +5,13 @@
 
   /* Color Pallet */
   --background-color: #f5f5f5;
+  --secondary-background-color: #e8e8e8;
 
   --main-font-color: #3a3a3a;
   --secondary-font-color: hsl(0, 0%, 40%);
 
   --focus-color: #0080ff;
+  --hover-color: hsl(210, 100%, 86%);
   --support-color: #929292;
 
   /* Base font size */

@@ -3,6 +3,11 @@ h1 {
   font-weight: bold;
 }
 
+h3 {
+  color: var(--main-font-color);
+  font-weight: medium;
+}
+
 .secondary-text {
   color: var(--secondary-font-color);
   font-weight: 500;

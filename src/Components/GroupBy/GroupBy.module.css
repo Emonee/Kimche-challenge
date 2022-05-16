@@ -1,0 +1,5 @@
+.groupBy {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: calc(1rem + 8vw);
+}
