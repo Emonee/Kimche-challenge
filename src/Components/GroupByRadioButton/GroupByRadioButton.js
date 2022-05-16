@@ -10,7 +10,7 @@ export default function GroupByRadioButton(props) {
         style={{display: 'none'}}
       ></input>
       <label
-        for={props.text}
+        htmlFor={props.text}
         className={styles.labelButton}
       >
         {props.text}
