@@ -1,13 +1,13 @@
 import styles from './GroupBy.module.css'
 
-import GroupByRadioButton from '../GroupByRadioButton/GroupByRadioButton'
+import GroupByButton from '../GroupByButton/GroupByButton'
 
-export default function GroupBy() {
+export default function GroupBy(props) {
   return (
     <section className={styles.groupBy}>
       <h3>Group By:</h3>
-      <GroupByRadioButton text="continent" />
-      <GroupByRadioButton text="language" />
+      <GroupByButton groupBy={props.groupBy} onClick={props.groupByContinent} text="continent" />
+      <GroupByButton groupBy={props.groupBy} onClick={props.groupByLanguage} text="language" />
     </section>
   )
 }
