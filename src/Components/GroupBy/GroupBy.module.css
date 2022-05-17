@@ -1,6 +1,12 @@
 .groupBy {
   margin-bottom: 50px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: calc(1rem + 8vw);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.buttonsContainer {
+  display: flex;
+  justify-content: space-between;
+  width: min(700px, 100%);
 }
