@@ -14,8 +14,8 @@ const COUNTRIES_DATA_QUERY = gql`
     name,
     emoji,
     code,
-    continent {name},
-    languages {name},
+    continent { name },
+    languages { name },
     capital,
     currency,
     phone
@@ -24,17 +24,16 @@ const COUNTRIES_DATA_QUERY = gql`
 `;
 
 function App() {
-  const [groupBy, setGroupBy] = useState('continent');
-  const groupByContinent = () => {
-    setGroupBy('continent')
-  }
-  const groupByLanguage = () => {
-    setGroupBy('language')
-  }
+  const [groupBy, setGroupBy] = useState('continent')
+  const groupByContinent = () => setGroupBy('continent')
+  const groupByLanguage = () => setGroupBy('language')
+
+  const [searchInput, setSearchInput] = useState('')
+  const handleChange = e => setSearchInput(e.target.value)
 
   const { data, loading, error } = useQuery(COUNTRIES_DATA_QUERY);
 
-  if (loading) return "Loading...";
+  if (loading) return "Loading..."
   if (error) return <pre>{error.message}</pre>
 
   const countriesGroupByContinent = data.countries.reduce((prev, curr) => {
@@ -46,6 +45,10 @@ function App() {
 
   const countriesGroupByLanguage = data.countries.reduce((prev, curr) => {
     const languages = curr.languages
+    if(languages.length < 1 && prev['No official language']) {
+      prev['No official language'] = prev['No official language'].push(curr)
+      return prev
+    }
     if(languages.length < 1) {
       prev['No official language'] = [curr]
       return prev
@@ -57,8 +60,8 @@ function App() {
     return prev
   }, {});
 
-  const continentsResults = Object.entries(countriesGroupByContinent).map(continentWithCountries => <Results key={continentWithCountries[0]} data={continentWithCountries}/>)
-  const languagesResults = Object.entries(countriesGroupByLanguage).map(languageWithCountries => <Results key={languageWithCountries[0]} data={languageWithCountries}/>)
+  const continentsResults = Object.entries(countriesGroupByContinent).map(continentWithCountries => <Results key={continentWithCountries[0]} input={searchInput} data={continentWithCountries}/>)
+  const languagesResults = Object.entries(countriesGroupByLanguage).map(languageWithCountries => <Results key={languageWithCountries[0]} input={searchInput} data={languageWithCountries}/>)
 
   const selectedResults = () => {
     if(groupBy === 'continent') return continentsResults
@@ -68,9 +71,9 @@ function App() {
   return (
     <>
       <Header />
-      <SearchInput />
+      <SearchInput value={searchInput} onChange={handleChange} />
       <GroupBy groupBy={groupBy} groupByContinent={groupByContinent} groupByLanguage={groupByLanguage} />
-      {groupBy && selectedResults()}
+      {groupBy && searchInput && selectedResults()}
     </>
   );
 }
