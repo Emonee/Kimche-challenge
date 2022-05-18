@@ -1,25 +1,29 @@
-import styles from './Results.module.css'
+import Result from "../Result/Result"
 
-import Card from "../Card/Card";
+export default function Results(props) {
+  const { data, input } = props
 
-export default function Results(props) {  
+  if (!input) return
+
   try {
-    const regExpString = props.input.trim()
-    const regExp = new RegExp(`^${regExpString}`, 'ig')    
-    const continent = props.data[0]
-    const countries = props.data[1].filter(country => regExp.test(country.name))
+    const regExpString = input.trim()
+    const regExp = new RegExp(`^${regExpString}`, 'ig')
+
+    const totalCountries = data
+      .map(array => array[1].filter(country => regExp.test(country.name)))
+      .flat()
+
+    if (!totalCountries.length) return <p>No countries founds</p>
     
-    if(!regExpString) return
-    if(countries.length < 1) return
-    else return (
-      <>
-        <h3>{continent}</h3>
-        <div className={styles.cardsContainer}>
-          {countries.map(country => <Card key={country.name} data={country}/>)}
-        </div>
-      </>
-    )
+    return (
+      data.map(groupCountries => {
+        const group = groupCountries[0]
+        const countries = groupCountries[1].filter(country => regExp.test(country.name))
+        return <Result key={group} groupBy={group} countries={countries} />
+      })
+    ) 
   } catch (error) {
-    return
+    console.log(error);
+    return <p>No countries founds</p>
   }  
 }
